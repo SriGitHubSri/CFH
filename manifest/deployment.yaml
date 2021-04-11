@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: gcr.io/steel-wharf-305823/cfh:latest
+        image: gcr.io/steel-wharf-305823/cfh-app:latest
         ports:
         - containerPort: 3000

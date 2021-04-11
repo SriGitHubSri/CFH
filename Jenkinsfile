@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "steel-wharf-305823/cfh"
+    registry = "steel-wharf-305823/cfh-app"
     registryCredential = 'kuberneteslogon'
     dockerImage = ''
       PROJECT_ID = 'steel-wharf-305823'
@@ -39,7 +39,7 @@ pipeline {
     }*/
     stage('Deploy to GKE') {
             steps{
-                sh "sed -i 's/cfh:latest/cfh:${env.BUILD_ID}/g' manifest/deployment.yaml"
+                sh "sed -i 's/cfh-app:latest/cfh-app:${env.BUILD_ID}/g' manifest/deployment.yaml"
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'manifest/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
                  echo "Deployment succesful"
 	    }
